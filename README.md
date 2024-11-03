@@ -1,0 +1,3 @@
+# ThreadsView - Análise de Threads do Instagram
+
+O **ThreadsView** é uma aplicação desenvolvida para coletar e analisar threads do Instagram. Trata-se de uma adaptação do **TwitterBot**, nossa aplicação original desenvolvida para o Trabalho de Conclusão de Curso (TCC) de 2023, que se especializava na coleta e análise de tweets. Este projeto foi aplicado para analisar threads que abordam **manifestações culturais afro-brasileiras**, oferecendo insights valiosos sobre como essas manifestações são representadas e discutidas na plataforma. Nosso objetivo é contribuir para a compreensão e valorização das expressões culturais afro-brasileiras, aproveitando o poder da análise de dados para realçar sua presença e impacto nas redes sociais.
