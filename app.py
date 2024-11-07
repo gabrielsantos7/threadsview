@@ -3,6 +3,16 @@ import pandas as pd
 import plotly.express as px
 from pathlib import Path
 
+def get_extended_date_range(data, date_column):
+    # Obtém as datas mínima e máxima do DataFrame
+    min_date = data[date_column].min()
+    max_date = data[date_column].max()
+
+    # Adiciona um dia extra para ampliar o intervalo
+    extended_min_date = min_date - pd.Timedelta(days=1)
+    extended_max_date = max_date + pd.Timedelta(days=1)
+
+    return extended_min_date, extended_max_date
 
 @st.cache_data
 def load_data():
@@ -43,12 +53,15 @@ def main():
         default=data["Palavras-Chave"].unique()
     )
 
-    # Define o intervalo de datas com base nos dados
+    # Usa a função para obter as datas mínima e máxima estendidas
+    filter_start_date, filter_end_date = get_extended_date_range(data, "Data e Hora")
+
+    # Define o intervalo de datas com base nas datas estendidas
     date_range = st.sidebar.date_input(
         "Intervalo de datas",
-        (data["Data e Hora"].min().date(), data["Data e Hora"].max().date()),
-        min_value=data["Data e Hora"].min().date(),
-        max_value=data["Data e Hora"].max().date()
+        (filter_start_date.date(), filter_end_date.date()),
+        min_value=filter_start_date.date(),
+        max_value=filter_end_date.date()
     )
     start_date, end_date = pd.to_datetime(date_range[0]), pd.to_datetime(date_range[1])
 
@@ -60,8 +73,9 @@ def main():
 
     if selected_keywords:
         # Seção de análises gerais
-        st.subheader("Visão Geral sobre o conteúdo coletado")
+        st.subheader("📊 Visão Geral sobre o conteúdo coletado")
         col1, col2, col3, col4 = st.columns(4)
+
         
         # Exibe métricas formatadas
         col1.metric("Número de threads", f"{len(filtered_data):,}".replace(",", "."))
@@ -73,7 +87,7 @@ def main():
         st.dataframe(filtered_data)
 
         # Preparação dos dados para o gráfico de engajamento
-        st.subheader("Análises gráficas")
+        st.subheader("📈 Análises gráficas")
         engagement_summary = filtered_data.groupby("Palavras-Chave")[["Curtidas", "Comentários", "Republicações"]].sum().reset_index()
         engagement_summary["Engajamento Total"] = engagement_summary[["Curtidas", "Comentários", "Republicações"]].sum(axis=1)
 
@@ -93,7 +107,7 @@ def main():
         st.warning("Selecione ao menos uma palavra-chave para apresentar os resultados.")
 
     # Seção de conclusão
-    st.subheader("Conclusão")
+    st.subheader("🔍 Conclusão")
     st.write("""
     A pesquisa revelou que as threads coletadas abordaram uma ampla gama de assuntos relacionados ao Brasil e à cultura afro-brasileira, destacando a riqueza e diversidade dos tópicos discutidos. A ferramenta desenvolvida demonstrou ser altamente eficaz na coleta e análise desses dados, provando seu potencial para ser reutilizada em pesquisas envolvendo diferentes temas e palavras-chave.
 
