@@ -88,19 +88,29 @@ def main():
 
         # Preparação dos dados para o gráfico de engajamento
         st.subheader("📈 Análises gráficas")
-        engagement_summary = filtered_data.groupby("Palavras-Chave")[["Curtidas", "Comentários", "Republicações"]].sum().reset_index()
-        engagement_summary["Engajamento Total"] = engagement_summary[["Curtidas", "Comentários", "Republicações"]].sum(axis=1)
+        
+        engagement_summary = filtered_data.groupby("Palavras-Chave")[
+            ["Curtidas", "Comentários", "Republicações"]
+        ].sum().reset_index()
+        engagement_summary["Engajamento Total"] = engagement_summary[
+            ["Curtidas", "Comentários", "Republicações"]
+        ].sum(axis=1)
 
         # Gráfico de barras para engajamento total
         engagement_chart = px.bar(
             engagement_summary, x="Palavras-Chave", y="Engajamento Total",
+            labels={"Engajamento Total": "Engajamento"},
             title="Engajamento (Soma de Curtidas, Comentários e Republicações) por Palavra-Chave"
         )
         st.plotly_chart(engagement_chart)
 
         # Preparação e visualização do gráfico de posts por data
         posts_by_date = filtered_data.groupby(filtered_data['Data e Hora'].dt.date).size().reset_index(name='Número de posts')
-        date_chart = px.line(posts_by_date, x="Data e Hora", y="Número de posts", title="Número de posts ao decorrer do tempo")
+        date_chart = px.line(
+            posts_by_date, x="Data e Hora", y="Número de posts", 
+            labels={"Data e Hora": "Data de publicação"},
+            title="Número de posts publicado ao decorrer do tempo"
+        )
         st.plotly_chart(date_chart)
 
     else:
