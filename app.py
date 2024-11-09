@@ -119,9 +119,9 @@ def main():
     # Seção de conclusão
     st.subheader("🔍 Conclusão")
     st.write("""
-    A pesquisa revelou que as threads coletadas abordaram uma ampla gama de assuntos relacionados ao Brasil e à cultura afro-brasileira, destacando a riqueza e diversidade dos tópicos discutidos. A ferramenta desenvolvida demonstrou ser altamente eficaz na coleta e análise desses dados, provando seu potencial para ser reutilizada em pesquisas envolvendo diferentes temas e palavras-chave.
-
-    Apesar do sucesso obtido, a rede social estudada apresenta algumas limitações em termos de busca e filtragem de conteúdo, especialmente quando comparada ao Twitter. A plataforma do Twitter permite a realização de pesquisas complexas com múltiplos filtros, como data de publicação, idioma, geolocalização e outros parâmetros avançados. Essas funcionalidades ampliam as possibilidades de análise e podem representar uma vantagem em projetos de coleta de dados mais detalhados e personalizados.
+    A pesquisa revelou que as publicações coletadas abordaram uma ampla gama de assuntos relacionados ao Brasil e à cultura afro-brasileira, destacando a riqueza e diversidade dos tópicos discutidos. A ferramenta desenvolvida atendeu satisfatoriamente ao problema de pesquisa proposto, permitindo a coleta e análise de publicações relacionadas a manifestações culturais afro-brasileiras.
+    
+    Apesar do sucesso obtido, a rede social que serviu como objeto de estudo apresenta algumas limitações em termos de busca e filtragem de conteúdo, especialmente quando comparada ao Twitter, cuja plataforma permitia a realização de pesquisas complexas com múltiplos filtros, como data de publicação, idioma, geolocalização e outros parâmetros avançados. Essas funcionalidades ampliam as possibilidades de análise e podem representar uma vantagem em projetos de coleta de dados mais detalhados e personalizados.
     """)
 
 main()
